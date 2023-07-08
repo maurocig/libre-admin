@@ -1,3 +1,4 @@
+import prismadb from "@/lib/prismadb";
 import { ModalProvider } from "@/providers/modal-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
@@ -10,7 +11,11 @@ export const metadata = {
   description: "admin dashboard",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ClerkProvider>
       <html lang="en">
