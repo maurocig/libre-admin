@@ -1,5 +1,5 @@
-import { ModalProvider } from "@/providers/modal-provider";
-import { ToasterProvider } from "@/providers/toast-provider";
+import { ModalProvider } from "@/providers/ModalProvider";
+import { ToasterProvider } from "@/providers/ToastProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
