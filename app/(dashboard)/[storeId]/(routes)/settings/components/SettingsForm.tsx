@@ -24,6 +24,7 @@ import {
 import Heading from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { useOrigin } from "@/hooks/useOrigin";
 import prismadb from "@/lib/prismadb";
 
 type SettingsFormProps = { initialData: Store };
@@ -37,6 +38,7 @@ type SettingsFormValues = z.infer<typeof formSchema>;
 export default function SettingsForm({ initialData }: SettingsFormProps) {
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -99,10 +101,7 @@ export default function SettingsForm({ initialData }: SettingsFormProps) {
       <Separator />
 
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full space-y-8"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
@@ -111,11 +110,7 @@ export default function SettingsForm({ initialData }: SettingsFormProps) {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Store name"
-                      {...field}
-                    />
+                    <Input disabled={loading} placeholder="Store name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,9 +124,9 @@ export default function SettingsForm({ initialData }: SettingsFormProps) {
       </Form>
       <Separator />
       <ApiAlert
-        title="test title"
+        title="NEXT_PUBLIC_API_URL"
         variant="public"
-        description="test description"
+        description={`${origin}/api/${params.storeId}`}
       />
     </>
   );

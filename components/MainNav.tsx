@@ -22,6 +22,11 @@ export default function MainNav({
       label: "Settings",
       active: pathname === `/${params.storeId}/settings`,
     },
+    {
+      href: `/${params.storeId}/billboards`,
+      label: "Billboards",
+      active: pathname === `/${params.storeId}/billboards`,
+    },
   ];
 
   return (
@@ -32,9 +37,23 @@ export default function MainNav({
           key={`route${i}`}
           className={cn(
             "text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-black dark:text-white"
-              : "text-muted-foreground",
+            route.active ? "text-black dark:text-white" : "text-muted-foreground",
+          )}
+        >
+          {route.label}
+        </Link>
+      ))}
+    </nav>
+  );
+  return (
+    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
+      {routes.map((route, i) => (
+        <Link
+          href={route.href}
+          key={`route${i}`}
+          className={cn(
+            "text-sm font-medium transition-colors hover:text-primary",
+            route.active ? "text-black dark:text-white" : "text-muted-foreground",
           )}
         >
           {route.label}

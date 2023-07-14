@@ -1,4 +1,7 @@
+"use client"; // we add this so we can use ApiAlert component inside server components.
+
 import { Copy, Server } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge, BadgeProps } from "@/components/ui/badge";
@@ -26,18 +29,27 @@ export default function ApiAlert({
   description,
   variant = "public",
 }: ApiAlertProps) {
+  const onCopy = () => {
+    navigator.clipboard.writeText(description);
+    toast.success("API Route copied to the clipboard.");
+  };
+
   return (
     <Alert>
-      <Server className="w-4 h-4" />
-      <AlertTitle className="flex items-center gap-x-2">
-        {title}
-        <Badge variant={variantMap[variant]}>{textMap[variant]}</Badge>
-      </AlertTitle>
+      <div className="flex">
+        <Server className="w-4 h-4 mr-4" />
+        <AlertTitle className="flex items-center gap-x-2">
+          {title}
+          <Badge className="relative" variant={variantMap[variant]}>
+            {textMap[variant]}
+          </Badge>
+        </AlertTitle>
+      </div>
       <AlertDescription className="flex items-center justify-between mt-4">
         <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
           {description}
         </code>
-        <Button variant="outline" size="icon" onClick={() => {}}>
+        <Button variant="outline" size="icon" onClick={onCopy}>
           <Copy className="w-4 h-4" />
         </Button>
       </AlertDescription>

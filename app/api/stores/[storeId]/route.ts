@@ -46,7 +46,7 @@ export async function PATCH(
 export async function DELETE(
   _req: Request,
   { params }: { params: { storeId: string } },
-  // ^ url 						^ app router
+  // 		^ url								^ app router
 ) {
   try {
     const { userId } = auth();
