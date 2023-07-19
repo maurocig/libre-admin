@@ -45,11 +45,11 @@ export default function ApiAlert({
           </Badge>
         </AlertTitle>
       </div>
-      <AlertDescription className="flex items-center justify-between mt-4">
-        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+      <AlertDescription className="flex items-center justify-between mt-4 space-x-3">
+        <code className="relative truncate rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
           {description}
         </code>
-        <Button variant="outline" size="icon" onClick={onCopy}>
+        <Button className="p-2" variant="outline" size="icon" onClick={onCopy}>
           <Copy className="w-4 h-4" />
         </Button>
       </AlertDescription>
